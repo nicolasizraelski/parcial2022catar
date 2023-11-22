@@ -1,6 +1,16 @@
+import cocineros.*
+import platos.*
 
-test "testX" {
-
-	assert.that(true)
-
+describe "Tests calificación de pastelero" {
+	const zoe = new Cocinero(especialidad = new EspecialidadPastelero(dulzorDeseado = 100))
+	
+	test "Un pastelero califica bien sin pasarse del máximo" {
+		const vigilante = new Postre(cantColores = 2, cocinero = zoe)
+		assert.equals(6, zoe.calificacionPara(vigilante))
+	}
+	
+	test "Un pastelero califica sin pasar del máximo" {
+		const fideosConTuco = new Principal(esBonito = false, cantidadAzucar = 9999, cocinero = zoe)
+		assert.equals(10, zoe.calificacionPara(fideosConTuco))
+	}
 }
